@@ -24,7 +24,7 @@ namespace TrilhaApiDesafio.Controllers
 
             Tarefa tarefa = _context.Tarefas.Find(id);
 
-            if(tarefa == null) return NotFound("Tarefa não encontrada");
+            if (tarefa == null) return NotFound("Tarefa não encontrada");
 
             return Ok(tarefa);
         }
@@ -44,6 +44,9 @@ namespace TrilhaApiDesafio.Controllers
             // Dica: Usar como exemplo o endpoint ObterPorData
 
             IQueryable<Tarefa> tarefas = _context.Tarefas.Where(x => x.Titulo.Contains(titulo));
+
+            if (tarefas == null) return NoContent();
+
             return Ok(tarefas);
         }
 
@@ -52,7 +55,8 @@ namespace TrilhaApiDesafio.Controllers
         {
             var tarefa = _context.Tarefas.Where(x => x.Data.Date == data.Date);
 
-            if(tarefa == null) return NotFound();
+            if (tarefa == null) return NoContent();
+
 
             return Ok(tarefa);
         }
@@ -64,7 +68,8 @@ namespace TrilhaApiDesafio.Controllers
             // Dica: Usar como exemplo o endpoint ObterPorData
             var tarefa = _context.Tarefas.Where(x => x.Status == status);
 
-            if(tarefa == null) return NotFound();
+            if(tarefa == null) return NoContent();
+
             return Ok(tarefa);
         }
 
